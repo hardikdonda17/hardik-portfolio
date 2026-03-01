@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Card } from "./ui/Card";
 import { Badge } from "./ui/Badge";
+import { SectionTitle } from "./ui/SectionTitle";
 import { FiGithub, FiExternalLink } from "react-icons/fi";
 
 const projects = [
@@ -50,62 +51,63 @@ const projects = [
 
 export function Projects() {
   return (
-    <section id="projects" className="py-24 px-6">
+    <section id="projects" className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8">
       <div className="mx-auto max-w-6xl">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-            Featured Projects
-          </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-indigo-500 mx-auto rounded-full" />
-        </motion.div>
+        <SectionTitle title="Featured Projects" />
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
           {projects.map((project, index) => (
             <motion.div
               key={project.title}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
+              viewport={{ once: true, margin: "-30px" }}
+              transition={{ delay: index * 0.1, duration: 0.4 }}
             >
-              <Card className="h-full flex flex-col group hover:border-blue-500/20 transition-all duration-300">
-                <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-blue-400 transition-colors">
-                  {project.title}
-                </h3>
-                <p className="text-zinc-400 flex-1 mb-4">{project.description}</p>
+              <motion.div
+                whileHover={{ y: -6 }}
+                transition={{ duration: 0.2 }}
+              >
+                <Card className="h-full flex flex-col group hover:border-blue-500/30 transition-all duration-300 glow-on-hover">
+                  <h3 className="text-lg sm:text-xl font-semibold text-white mb-3 group-hover:text-blue-400 transition-colors">
+                    {project.title}
+                  </h3>
+                  <p className="text-zinc-400 flex-1 mb-4 text-sm sm:text-base line-clamp-3">
+                    {project.description}
+                  </p>
 
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {project.tech.map((tech) => (
-                    <Badge key={tech}>{tech}</Badge>
-                  ))}
-                </div>
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {project.tech.map((tech) => (
+                      <Badge key={tech}>{tech}</Badge>
+                    ))}
+                  </div>
 
-                <div className="flex gap-4">
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-zinc-400 hover:text-white transition-colors text-sm"
-                  >
-                    <FiGithub className="w-5 h-5" />
-                    GitHub
-                  </a>
-                  <a
-                    href={project.demo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-zinc-400 hover:text-white transition-colors text-sm"
-                  >
-                    <FiExternalLink className="w-5 h-5" />
-                    Live Demo
-                  </a>
-                </div>
-              </Card>
+                  <div className="flex gap-4 sm:gap-6">
+                    <motion.a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 text-zinc-400 hover:text-white transition-colors text-sm"
+                      whileHover={{ x: 4 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <FiGithub className="w-4 h-4 sm:w-5 sm:h-5" />
+                      GitHub
+                    </motion.a>
+                    <motion.a
+                      href={project.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 text-zinc-400 hover:text-white transition-colors text-sm"
+                      whileHover={{ x: 4 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <FiExternalLink className="w-4 h-4 sm:w-5 sm:h-5" />
+                      Live Demo
+                    </motion.a>
+                  </div>
+                </Card>
+              </motion.div>
             </motion.div>
           ))}
         </div>

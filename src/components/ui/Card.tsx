@@ -13,13 +13,14 @@ export function Card({ children, className = "", glass = true }: CardProps) {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.4 }}
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+      whileHover={{ transition: { duration: 0.2 } }}
       className={`rounded-2xl border ${
         glass
           ? "bg-white/[0.03] backdrop-blur-xl border-white/[0.08]"
           : "bg-[#12121a] border-white/[0.08]"
-      } p-6 ${className}`}
+      } p-5 sm:p-6 ${className}`}
     >
       {children}
     </motion.div>

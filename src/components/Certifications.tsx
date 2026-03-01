@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Card } from "./ui/Card";
+import { SectionTitle } from "./ui/SectionTitle";
 import { FiAward } from "react-icons/fi";
 
 const certifications = [
@@ -24,43 +25,42 @@ const certifications = [
 
 export function Certifications() {
   return (
-    <section id="certifications" className="py-24 px-6">
+    <section id="certifications" className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8">
       <div className="mx-auto max-w-6xl">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-            Certifications
-          </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-indigo-500 mx-auto rounded-full" />
-        </motion.div>
+        <SectionTitle title="Certifications" />
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
           {certifications.map((cert, index) => (
             <motion.div
               key={cert.name}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
+              viewport={{ once: true, margin: "-30px" }}
+              transition={{ delay: index * 0.1, duration: 0.4 }}
             >
-              <Card className="h-full flex flex-col">
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-amber-500/10 flex items-center justify-center">
-                    <FiAward className="w-6 h-6 text-amber-400" />
+              <motion.div
+                whileHover={{ y: -4, scale: 1.02 }}
+                transition={{ duration: 0.2 }}
+              >
+                <Card className="h-full flex flex-col hover:border-amber-500/20 transition-colors group">
+                  <div className="flex items-start gap-4">
+                    <motion.div
+                      className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-amber-500/10 flex items-center justify-center border border-amber-500/20 group-hover:bg-amber-500/20 transition-colors"
+                      whileHover={{ rotate: [0, -5, 5, 0] }}
+                      transition={{ duration: 0.5 }}
+                    >
+                      <FiAward className="w-5 h-5 sm:w-6 sm:h-6 text-amber-400" />
+                    </motion.div>
+                    <div className="min-w-0">
+                      <h3 className="text-base sm:text-lg font-semibold text-white mb-1 line-clamp-2">
+                        {cert.name}
+                      </h3>
+                      <p className="text-zinc-500 text-xs sm:text-sm">{cert.issuer}</p>
+                      <p className="text-zinc-600 text-xs mt-1">{cert.year}</p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-white mb-1">
-                      {cert.name}
-                    </h3>
-                    <p className="text-zinc-500 text-sm">{cert.issuer}</p>
-                    <p className="text-zinc-600 text-xs mt-1">{cert.year}</p>
-                  </div>
-                </div>
-              </Card>
+                </Card>
+              </motion.div>
             </motion.div>
           ))}
         </div>
