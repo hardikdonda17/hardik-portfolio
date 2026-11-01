@@ -41,7 +41,7 @@ export function Header() {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.98 }}
         >
-          <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
+          <span id="logo" className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
             HD
           </span>
         </motion.a>

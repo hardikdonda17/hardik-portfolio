@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Card } from "./ui/Card";
 import { SectionTitle } from "./ui/SectionTitle";
+import { getYearsBetween } from "@/utils/utils";
 
 const techStack = [
   "Java",
@@ -25,7 +26,7 @@ export function About() {
             <div className="space-y-5 sm:space-y-6">
               <p className="text-zinc-300 leading-relaxed text-base sm:text-lg">
                 I&apos;m a Full Stack Developer with{" "}
-                <span className="text-blue-400 font-semibold">3.5+ years</span>{" "}
+                <span className="text-blue-400 font-semibold">{getYearsBetween(new Date(2022, 6, 22), new Date())}+ years</span>{" "}
                 of experience building enterprise-grade applications. Currently
                 working at{" "}
                 <span className="text-white font-medium">
