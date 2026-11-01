@@ -234,7 +234,7 @@ export default function PortfolioChatbot() {
 
 
   return (
-    <div className="fixed bottom-5 right-5 z-50 font-sans antialiased">
+    <div className="fixed bottom-5 right-2 z-50 font-sans antialiased">
       {/* Floating Chat Trigger Button */}
       {!isOpen && (
         <button
