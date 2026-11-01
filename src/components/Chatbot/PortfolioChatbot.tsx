@@ -234,12 +234,18 @@ export default function PortfolioChatbot() {
 
 
   return (
-    <div className="fixed bottom-5 right-2 z-50 font-sans antialiased">
+    <div
+      className={`fixed z-50 font-sans antialiased ${
+        isOpen
+          ? "inset-x-3 bottom-3 sm:inset-x-auto sm:left-auto sm:right-5 sm:bottom-5"
+          : "bottom-5 right-5"
+      }`}
+    >
       {/* Floating Chat Trigger Button */}
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="group relative flex items-center justify-center p-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-full shadow-2xl hover:scale-105 active:scale-95 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-blue-400/50"
+          className="group relative ml-auto flex items-center justify-center p-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-full shadow-2xl hover:scale-105 active:scale-95 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-blue-400/50"
           aria-label="Open Chatbot"
         >
           <Sparkles className="w-6 h-6 animate-pulse" />
@@ -255,7 +261,7 @@ export default function PortfolioChatbot() {
 
       {/* Main Floating Chat Window */}
       {isOpen && (
-        <div className="w-[360px] sm:w-[400px] h-[550px] max-h-[85vh] bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl flex flex-col overflow-hidden transition-all duration-300 animate-in fade-in slide-in-from-bottom-5">
+        <div className="w-full sm:w-[400px] h-[min(550px,calc(100dvh-1.5rem))] max-h-[85dvh] bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl flex flex-col overflow-hidden transition-all duration-300 animate-in fade-in slide-in-from-bottom-5">
           {/* Header */}
           <div className="bg-gradient-to-r from-blue-600 via-indigo-600 to-violet-600 text-white p-4 flex items-center justify-between shadow-md">
             <div className="flex items-center space-x-3">
@@ -293,11 +299,11 @@ export default function PortfolioChatbot() {
           </div>
 
           {/* Quick Category Bar */}
-          <div className="px-3 py-2 bg-slate-50 dark:bg-slate-800/50 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
-            <span className="flex items-center gap-1 font-medium">
-              <Briefcase className="w-3.5 h-3.5 text-blue-500" /> {getYearsBetween(new Date(2022, 6, 22), new Date())}+ Yrs Exp (TCS)
+          <div className="px-3 py-2 bg-slate-50 dark:bg-slate-800/50 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between gap-2 text-xs text-slate-500 dark:text-slate-400 min-w-0">
+            <span className="flex items-center gap-1 font-medium min-w-0 truncate">
+              <Briefcase className="w-3.5 h-3.5 text-blue-500 shrink-0" /> {getYearsBetween(new Date(2022, 6, 22), new Date())}+ Yrs Exp (TCS)
             </span>
-            <span className="flex items-center gap-1 font-medium">
+            <span className="flex items-center gap-1 font-medium shrink-0">
               <GraduationCap className="w-3.5 h-3.5 text-indigo-500" /> GEC Bhavnagar
             </span>
           </div>
@@ -316,7 +322,7 @@ export default function PortfolioChatbot() {
                 )}
 
                 <div
-                  className={`max-w-[80%] rounded-2xl px-3.5 py-2.5 text-xs sm:text-sm leading-relaxed shadow-sm ${msg.sender === 'user'
+                  className={`max-w-[80%] min-w-0 break-words rounded-2xl px-3.5 py-2.5 text-xs sm:text-sm leading-relaxed shadow-sm ${msg.sender === 'user'
                     ? 'bg-blue-600 text-white rounded-br-none'
                     : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/60 rounded-bl-none'
                     }`}
